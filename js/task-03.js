@@ -1,3 +1,4 @@
+const galleryList = document.querySelector('.gallery'); // получаем ссылку на список
 const images = [
   {
     url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260",
@@ -13,10 +14,15 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector(".gallery");
+const galleryMarkup = createGalleryMarkup(images); // вызываем функцию для создания разметки галереи
+galleryList.insertAdjacentHTML('beforeend', galleryMarkup); // вставляем полученную разметку в список
 
-const imagesMarkup = images
-  .map(({ url, alt }) => `<li><img src="${url}" alt="${alt}"></li>`)
-  .join("");
-
-gallery.insertAdjacentHTML("beforeend", imagesMarkup);
+function createGalleryMarkup(images) { // функция для создания разметки галереи на основе массива объектов
+  return images.map(({ url, alt }) => { // используем деструктуризацию объекта в параметре функции map
+    return `
+      <li class="gallery__item">
+        <img class="gallery__image" src="${url}" alt="${alt}">
+      </li>
+    `;
+  }).join(''); // преобразуем массив строк в одну строку
+}

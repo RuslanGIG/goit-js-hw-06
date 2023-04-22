@@ -1,22 +1,24 @@
-const counter = document.getElementById("counter");
-const counterValue = document.getElementById("value");
+// Получаем ссылки на элементы DOM
+const counter = document.querySelector("#counter");
+const valueEl = counter.querySelector("#value");
+const incrementBtn = counter.querySelector("[data-action='increment']");
+const decrementBtn = counter.querySelector("[data-action='decrement']");
 
-let value = 0;
+// Инициализируем значение счетчика
+let counterValue = 0;
 
-function increment() {
-  value += 1;
-  counterValue.textContent = value;
-}
+// Функция обработки клика на кнопке увеличения счетчика
+const onIncrementBtnClick = () => {
+  counterValue += 1;
+  valueEl.textContent = counterValue;
+};
 
-function decrement() {
-  value -= 1;
-  counterValue.textContent = value;
-}
+// Функция обработки клика на кнопке уменьшения счетчика
+const onDecrementBtnClick = () => {
+  counterValue -= 1;
+  valueEl.textContent = counterValue;
+};
 
-counter.addEventListener("click", (event) => {
-  if (event.target.dataset.action === "increment") {
-    increment();
-  } else if (event.target.dataset.action === "decrement") {
-    decrement();
-  }
-});
+// Добавляем слушатели событий на кнопки
+incrementBtn.addEventListener("click", onIncrementBtnClick);
+decrementBtn.addEventListener("click", onDecrementBtnClick);

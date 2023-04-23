@@ -25,3 +25,6 @@ const items = ingredients.map((ingredient) => {
 
 // додаємо всі створені елементи <li> в список <ul> за одну операцію
 ingredientsList.append(...items);
+
+
+

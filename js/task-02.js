@@ -1,5 +1,7 @@
-const ingredientsList = document.querySelector("#ingredients"); // выбираем список ингредиентов по id
+// отримуємо доступ до списку <ul> по його id
+const ingredientsList = document.querySelector("#ingredients");
 
+// масив рядків з назвами інгредієнтів
 const ingredients = [
   "Potatoes",
   "Mushrooms",
@@ -9,15 +11,17 @@ const ingredients = [
   "Condiments",
 ];
 
-// ingredients.push("Test") 
-// так можем запушить новый элемент
-
-const ingredientItems = ingredients.map((ingredient) => {
-  const ingredientItem = document.createElement("li"); // создаем новый элемент li
-  ingredientItem.textContent = ingredient; // добавляем название ингредиента в текстовый контент элемента
-  ingredientItem.classList.add("item"); // добавляем класс item элементу
-
-  return ingredientItem; // возвращаем элемент li
+// створюємо новий елемент <li> для кожного інгредієнту в масиві
+const items = ingredients.map((ingredient) => {
+  // створюємо новий елемент <li>
+  const item = document.createElement("li");
+  // додаємо клас до створеного елементу
+  item.classList.add("item");
+  // додаємо текстовий вміст до створеного елементу
+  item.textContent = ingredient;
+  // повертаємо створений елемент <li> для додавання його в масив
+  return item;
 });
 
-ingredientsList.append(...ingredientItems);
+// додаємо всі створені елементи <li> в список <ul> за одну операцію
+ingredientsList.append(...items);

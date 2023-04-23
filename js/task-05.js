@@ -1,16 +1,21 @@
-const inputName = document.querySelector("#name-input"); // Знаходимо інпут за id
-const outputName = document.querySelector("#name-output"); // Знаходимо span за id
+// 1. Отримуємо доступ до інпута та спану за допомогою методу querySelector.
+const inputName = document.querySelector("#name-input");
+const outputName = document.querySelector("#name-output");
 
-inputName.addEventListener("input", handleInputName); // Встановлюємо слухача події input на інпут
+// 2. Створюємо функцію для оновлення тексту спану.
+const updateNameOutput = () => {
+  // 3. Отримуємо значення введеного тексту в інпут.
+  const inputValue = inputName.value.trim();
 
-function handleInputName(event) {
-  // Функція, яка обробляє подію input на інпуті
-  const currentName = event.currentTarget.value; // Отримуємо поточне значення інпуту
-
-  if (currentName.trim() === "") {
-    // Перевіряємо, чи інпут порожній
-    outputName.textContent = "Anonymous"; // Якщо інпут порожній, встановлюємо в спан значення "Anonymous"
+  // 4. Перевіряємо, чи є введений текст порожнім.
+  if (inputValue === "") {
+    // 5. Якщо текст порожній, то встановлюємо текст спану "Anonymous".
+    outputName.textContent = "Anonymous";
   } else {
-    outputName.textContent = currentName; // Якщо в інпуті є текст, встановлюємо його в спан
+    // 6. Інакше встановлюємо текст спану зі значенням інпуту.
+    outputName.textContent = inputValue;
   }
-}
+};
+
+// 7. Додаємо слухача події input до інпута.
+inputName.addEventListener("input", updateNameOutput);

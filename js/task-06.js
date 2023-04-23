@@ -1,22 +1,25 @@
-// Отримуємо доступ до інпуту
-const input = document.querySelector("#validation-input");
+// Отримуємо доступ до інпуту та зберігаємо його в змінну
+const validationInput = document.querySelector("#validation-input");
 
-// Отримуємо правильну кількість символів з атрибуту data-length інпуту
-const validLength = input.dataset.length;
+// Отримуємо довжину символів, яку повинен містити інпут
+const expectedLength = validationInput.dataset.length;
 
-// Створюємо слухача події "blur" на інпуті
-input.addEventListener("blur", handleInputBlur);
+// Функція, яка буде виконуватись при втраті інпутом фокусу
+function handleBlur() {
+  // Отримуємо вміст інпуту та зберігаємо його в змінну
+  const inputValue = validationInput.value;
 
-// Функція, яка викликається при втраті фокусу на інпуті
-function handleInputBlur(event) {
-  const valueLength = event.target.value.length;
-
-  // Перевіряємо, чи введено коректну кількість символів
-  if (valueLength === Number(validLength)) {
-    input.classList.add("valid"); // Додаємо клас 'valid' для стилізації зеленим бордером
-    input.classList.remove("invalid"); // Видаляємо клас 'invalid', якщо він був доданий раніше
+  // Перевіряємо довжину введеного тексту та порівнюємо її з очікуваною довжиною
+  if (inputValue.length === +expectedLength) {
+    // Якщо довжина введеного тексту співпадає з очікуваною, то додаємо клас valid та видаляємо клас invalid
+    validationInput.classList.add("valid");
+    validationInput.classList.remove("invalid");
   } else {
-    input.classList.add("invalid"); // Додаємо клас 'invalid' для стилізації червоним бордером
-    input.classList.remove("valid"); // Видаляємо клас 'valid', якщо він був доданий раніше
+    // Якщо довжина введеного тексту не співпадає з очікуваною, то додаємо клас invalid та видаляємо клас valid
+    validationInput.classList.add("invalid");
+    validationInput.classList.remove("valid");
   }
 }
+
+// Додаємо обробник події blur до інпуту
+validationInput.addEventListener("blur", handleBlur);

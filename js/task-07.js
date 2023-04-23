@@ -1,12 +1,15 @@
-// Знаходимо наші елементи у DOM за id
-const inputRange = document.querySelector("#font-size-control");
-const text = document.querySelector("#text");
+// 1. Знаходимо наші елементи в DOM та зберігаємо їх в змінні
+const inputFontSizeControl = document.querySelector("#font-size-control");
+const spanText = document.querySelector("#text");
 
-// Встановлюємо початкове значення розміру тексту
-text.style.fontSize = `${inputRange.value}px`;
+// 2. Встановлюємо прослуховувач події 'input' на інпуті inputFontSizeControl
+inputFontSizeControl.addEventListener("input", onFontSizeControlInputChange);
 
-// Створюємо слухача події 'input' на inputRange
-inputRange.addEventListener("input", (event) => {
-  // Оновлюємо розмір тексту залежно від значення range
-  text.style.fontSize = `${event.target.value}px`;
-});
+// 3. Оголошуємо функцію-обробник події 'input'
+function onFontSizeControlInputChange(event) {
+  // 4. Отримуємо значення inputFontSizeControl та приводимо його до числового типу
+  const fontSize = Number(event.target.value);
+
+  // 5. Встановлюємо отримане значення font-size для елементу spanText
+  spanText.style.fontSize = `${fontSize}px`;
+}

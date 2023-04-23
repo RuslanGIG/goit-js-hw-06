@@ -1,21 +1,23 @@
-// Получаем доступ к элементам DOM
-const bodyEl = document.querySelector("body");
-const colorEl = document.querySelector(".color");
+// Знаходимо кнопку і додаємо обробник події на клік
 const changeColorBtn = document.querySelector(".change-color");
+changeColorBtn.addEventListener("click", changeBackgroundColor);
 
-// Функция, которая меняет цвет фона и выводит его значение
+// Знаходимо span, в який будемо виводити кольори
+const colorSpan = document.querySelector(".color");
+
 function changeBackgroundColor() {
-  const newColor = getRandomHexColor();
-  bodyEl.style.backgroundColor = newColor;
-  colorEl.textContent = newColor;
+  // Генеруємо випадковий колір
+  const randomColor = getRandomHexColor();
+
+  // Змінюємо кольор фону body
+  document.body.style.backgroundColor = randomColor;
+
+  // Виводимо значення кольору в span
+  colorSpan.textContent = randomColor;
 }
 
-// Функция, которая генерирует случайный цвет
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
-
-// Вешаем обработчик клика на кнопку
-changeColorBtn.addEventListener("click", changeBackgroundColor);

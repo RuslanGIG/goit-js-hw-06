@@ -1,13 +1,11 @@
-const categoriesList = document.querySelector("#categories"); // выбираем список категорий по id
+const categoriesList = document.querySelector("#categories");
+const categoriesItems = categoriesList.querySelectorAll(".item");
 
-const categoriesItems = categoriesList.querySelectorAll(".item"); // выбираем все элементы li.item в списке категорий
-
-console.log(`Number of categories: ${categoriesItems.length}`); // выводим количество категорий
+console.log(`Number of categories: ${categoriesItems.length}`);
 
 categoriesItems.forEach((item) => {
-  const categoryName = item.querySelector("h2").textContent; // получаем название категории
-  const categoryElements = item.querySelectorAll("li").length; // получаем количество элементов категории
-
-  console.log(`Category: ${categoryName}`);
-  console.log(`Elements: ${categoryElements}`);
+  const title = item.querySelector("h2").textContent;
+  const elementsCount = item.querySelectorAll("li").length;
+  console.log(`Category: ${title}`);
+  console.log(`Elements: ${elementsCount}`);
 });
